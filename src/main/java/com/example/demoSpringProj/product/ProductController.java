@@ -9,7 +9,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@Api(value="Operations related to product")
+@Api(description="Operations related to product")
 public class ProductController {
 
     private ProductService productService;

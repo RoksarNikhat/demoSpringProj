@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @Slf4j
-@Api(value="Operations related to user")
+@Api(description="Operations related to user")
 public class UserController {
 
     private UserService userService;

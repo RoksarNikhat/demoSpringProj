@@ -1,6 +1,8 @@
 package com.example.demoSpringProj.user;
 
 
+import com.example.demoSpringProj.order.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +11,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -36,5 +40,14 @@ public class User {
     @NotNull(message="Email  cannot be empty")
     private String email;
 
+ @OneToMany(mappedBy = "user")
+ @JsonIgnore
+ private Set<Order> orders = new HashSet<>();
 
+ public User(Long id, String firstName,  String lastName, String email) {
+  this.id = id;
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.email = email;
+ }
 }

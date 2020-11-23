@@ -3,7 +3,6 @@ package com.example.demoSpringProj.product;
 import com.example.demoSpringProj.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
-import jdk.jfr.Recording;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

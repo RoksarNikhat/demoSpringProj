@@ -1,5 +1,7 @@
 package com.example.demoSpringProj.core;
 
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.util.stream.Collectors;
-
+@Slf4j
 @RestControllerAdvice("com.example.demoSpringProj")
 public class AppControllerAdvice implements ResponseBodyAdvice {
     @ExceptionHandler(value= MethodArgumentNotValidException.class)
@@ -33,6 +35,7 @@ public class AppControllerAdvice implements ResponseBodyAdvice {
         public ResponseEntity<ApiResponse> handleGlobalException(Exception e) {
 
             ApiResponse response = new ApiResponse(500,null,e.getMessage());
+//            log.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
             return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -46,5 +49,8 @@ public class AppControllerAdvice implements ResponseBodyAdvice {
     @Override
     public ApiResponse beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         return o instanceof ApiResponse? (ApiResponse) o:new ApiResponse (200,o,null);
+//        log.info("*****************************************");
+//        log.info("Object type {}",o.getClass());
+//        return new ApiResponse(200,o,null);
     }
 }
